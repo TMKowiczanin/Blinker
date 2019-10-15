@@ -15,6 +15,7 @@ namespace Migacz
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,8 +36,7 @@ namespace Migacz
         private void button3_Click(object sender, EventArgs e)
         {
             // Create a new instance of the Form2 class
-            Form WyskakujaceOkno = new Form();
-
+            Form WyskakujaceOkno = new Blinker();
             // Show the settings form
             WyskakujaceOkno.Show();
             //System('Pause')
