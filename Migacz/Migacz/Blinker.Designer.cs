@@ -30,11 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.WyswietlaczSekund = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
             // 
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // WyswietlaczSekund
+            // 
+            this.WyswietlaczSekund.AutoSize = true;
+            this.WyswietlaczSekund.BackColor = System.Drawing.SystemColors.Info;
+            this.WyswietlaczSekund.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.WyswietlaczSekund.Location = new System.Drawing.Point(9, 9);
+            this.WyswietlaczSekund.Margin = new System.Windows.Forms.Padding(0);
+            this.WyswietlaczSekund.Name = "WyswietlaczSekund";
+            this.WyswietlaczSekund.Size = new System.Drawing.Size(42, 46);
+            this.WyswietlaczSekund.TabIndex = 0;
+            this.WyswietlaczSekund.Text = "0";
+            this.WyswietlaczSekund.Click += new System.EventHandler(this.timer2_Tick);
             // 
             // Blinker
             // 
@@ -42,17 +63,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.WyswietlaczSekund);
             this.KeyPreview = true;
             this.Name = "Blinker";
             this.Text = "Migacz";
             this.Load += new System.EventHandler(this.Blinker_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Blinker_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label WyswietlaczSekund;
     }
 }

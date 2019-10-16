@@ -10,8 +10,18 @@ using System.Windows.Forms;
 
 namespace Migacz
 {
+    
     public partial class Form1 : Form
     {
+        private int czestotliwos = 1;
+        private int czasMigania = 60;
+        public void setCzestotliwosc(int i) {
+            this.czestotliwos = i;
+        }
+        public int getCzestotliwosc() {
+            return this.czestotliwos;
+
+        }
         public Form1()
         {
             InitializeComponent();
@@ -36,7 +46,7 @@ namespace Migacz
         private void button3_Click(object sender, EventArgs e)
         {
             // Create a new instance of the Form2 class
-            Form WyskakujaceOkno = new Blinker();
+            Form WyskakujaceOkno = new Blinker(this.czestotliwos, this.czasMigania);
             // Show the settings form
             WyskakujaceOkno.Show();
             //System('Pause')
@@ -44,27 +54,18 @@ namespace Migacz
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            setCzestotliwosc(1);
 
         }
 
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void radioButton6_CheckedChanged(object sender, EventArgs e)
-        {
-
+            setCzestotliwosc(10);
         }
 
         private void radioButton7_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void radioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-
+            setCzestotliwosc(20);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -74,6 +75,34 @@ namespace Migacz
 
         private void radio5Hz_CheckedChanged(object sender, EventArgs e)
         {
+            setCzestotliwosc(2);
+        }
+
+        private void radio8Hz_CheckedChanged(object sender, EventArgs e)
+        {
+            setCzestotliwosc(4);
+        }
+
+        private void radio10Hz_CheckedChanged(object sender, EventArgs e)
+        {
+            setCzestotliwosc(5);
+        }
+
+        private void textBoxCzasMigania_TextChanged(object sender, EventArgs e)
+        {
+
+
+
+
+        }
+
+        private void textBoxCzasMigania_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (true)
+                this.textBoxCzasMigania.Text = "60";
+
+
+
 
         }
     }

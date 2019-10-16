@@ -13,14 +13,22 @@ namespace Migacz
 {
     public partial class Blinker : Form
     {
-        public Blinker()
+        int licznik = 0;
+        int secPP = 500;
+        int czasTrwania = 60;
+        public Blinker(int czestotliwosc, int migniecia)
         {
+            czasTrwania = migniecia;
+            secPP = 1000 / (2 * czestotliwosc);
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
+            timer1.Interval = secPP;
             timer1.Start();
+            timer2.Start();
             BackColor = Color.White;
+            
             //int j = 20;
             //for (int i = 0; i <= j; i++)
             //{
@@ -54,6 +62,14 @@ namespace Migacz
                 BackColor = Color.Black;
             else
                 BackColor = Color.White;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            WyswietlaczSekund.Text= Convert.ToString( ++this.licznik);
+
+            if (this.licznik == czasTrwania)
+                this.Close();
         }
     }
 }
