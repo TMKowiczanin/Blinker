@@ -13,6 +13,8 @@ namespace Migacz
     
     public partial class Form1 : Form
     {
+        Form MigajaceOkno;
+        
         private int czestotliwos = 1;
         private int czasMigania = 60;
         public void setCzestotliwosc(int i) {
@@ -35,7 +37,14 @@ namespace Migacz
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Create a new instance of the Form2 class
+            if (MigajaceOkno != null)
+                MigajaceOkno.Close();
 
+            MigajaceOkno = new ImageBlinker();
+            // Show the settings form
+            MigajaceOkno.Show();
+            //System('Pause')
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -46,9 +55,12 @@ namespace Migacz
         private void button3_Click(object sender, EventArgs e)
         {
             // Create a new instance of the Form2 class
-            Form WyskakujaceOkno = new Blinker(this.czestotliwos, this.czasMigania);
+            if (MigajaceOkno != null)
+                MigajaceOkno.Close();
+
+            MigajaceOkno = new Blinker(this.czestotliwos, this.czasMigania);
             // Show the settings form
-            WyskakujaceOkno.Show();
+            MigajaceOkno.Show();
             //System('Pause')
         }
 
@@ -103,6 +115,11 @@ namespace Migacz
 
 
 
+
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
 
         }
     }

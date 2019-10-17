@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ToolTip toolTipTrening;
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBoxCzasMigania = new System.Windows.Forms.TextBox();
@@ -45,6 +46,7 @@
             this.radio10Hz = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            toolTipTrening = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +57,8 @@
             this.button1.Size = new System.Drawing.Size(102, 88);
             this.button1.TabIndex = 0;
             this.button1.Text = "TRENING";
+            toolTipTrening.SetToolTip(this.button1, "Na ekranie wyświetla się w sposób losowy przez jedną minutę /n TARGET (10 razy) /" +
+        "n NoTARGET (50 razy).");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -208,6 +212,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wybierz częstotliwość";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // toolTipTrening
+            // 
+            toolTipTrening.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
             // Form1
             // 
