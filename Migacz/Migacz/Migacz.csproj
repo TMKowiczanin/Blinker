@@ -110,6 +110,7 @@
     <Content Include="imgs\target.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="imgs\yellow.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wyniki\" />

@@ -17,6 +17,7 @@ namespace Migacz
         private Image Red       =Image.FromFile("imgs\\red.jpg");
         private Image Green     =Image.FromFile("imgs\\green.jpg");
         private Image Orange    =Image.FromFile("imgs\\orange.jpg");
+        private Image Yellow    =Image.FromFile("imgs\\yellow.jpg");
         private Random rnd = new Random();
         private int licznik = 0;
         //private Image Green =    Image.FromFile("imgs\green.jpg");
@@ -83,15 +84,19 @@ namespace Migacz
 
             else
             {
+                int rr = rnd.Next(1, 61);
                 BackColor = Color.White;
-                if(rnd.Next(1,5)==1)
-                SetImage(Target);
-                if (rnd.Next(1, 5) == 2)
+                
+                if (rr<= 25)
                     SetImage(Red);
-                if (rnd.Next(1, 5) == 3)
+                if (rr > 25 || rr <=50 )
                     SetImage(Orange);
-                if (rnd.Next(1, 5) == 4)
+                if (rr > 50 || rr <= 75)
                     SetImage(Green);
+                if (rr > 75 || rr <= 100)
+                    SetImage(Yellow);
+                if (rr > 100)
+                    SetImage(Target);
                 pictureBox1.Show();
             }
         }
