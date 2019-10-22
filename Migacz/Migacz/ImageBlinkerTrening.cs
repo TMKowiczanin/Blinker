@@ -44,7 +44,7 @@ namespace Migacz
             else
                 path = @"wyniki\Test_" + path + ".txt";
             fs = new StreamWriter(path);
-            this.fs.Write("Target was in this blinks: \n");
+            this.fs.WriteLine("Target was in this blinks:");
 
                       
             FormBorderStyle = FormBorderStyle.None;
@@ -74,17 +74,17 @@ namespace Migacz
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.fs.Write("====================== \n====================== \n Total numbers of blinks: \n"+licznik.ToString());
+                
+                this.fs.WriteLine("==================================");
+                this.fs.WriteLine("==================================");
+                this.fs.WriteLine("Total numbers of blinks:" + licznik.ToString());
                 this.fs.Close();
                 this.Close();
 
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void timerImage_Tick(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace Migacz
                 {
                     SetImage(Target);
                     if(this.trening)
-                        this.fs.Write(this.licznik.ToString()+"\n");
+                        this.fs.WriteLine(this.licznik.ToString());
                 }
                 pictureBox1.Show();
             }

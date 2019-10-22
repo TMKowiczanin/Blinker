@@ -59,8 +59,9 @@ namespace Migacz
         {
             if (e.KeyCode == Keys.Escape)
             {
-                
-                this.fs.Write("Blinks " + this.BlinkC.ToString() + " times. \n" + "Blinking frequency: "+Freq.ToString());
+
+                this.fs.WriteLine("Blinks " + this.BlinkC.ToString() + " times.");
+                this.fs.WriteLine("Blinking frequency: "+Freq.ToString());
                 this.fs.Close();
                 this.Close();
 
