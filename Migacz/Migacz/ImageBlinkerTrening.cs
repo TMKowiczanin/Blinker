@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace Migacz
 {
-    public partial class ImageBlinker : Form
+    public partial class ImageBlinkerTrening : Form
     {
         private int secPP;
         private Image Target    =Image.FromFile("imgs\\target.jpg");
@@ -23,22 +25,35 @@ namespace Migacz
         //private Image Green =    Image.FromFile("imgs\green.jpg");
         //private Image Orange =   Image.FromFile("imgs\orange.jpg");
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
-        public ImageBlinker()
+
+
+
+        String path;
+        StreamWriter fs;
+        bool trening;
+
+        public ImageBlinkerTrening(bool trening)
         {
             InitializeComponent();
-             //CreateText(string path);
-            //System.IO.StreamWriter writer = new System.IO.StreamWriter("wyniki\\ble.txt"); //open the file for writing.
-            //writer.Write(DateTime.Now.ToString()); //write the current date to the file. change this with your date or something.
-            //writer.Close(); //remember to close the file again.
-            //writer.Dispose(); //remember to dispose it from the memory.
-            this.secPP = 500;
-            
+            this.secPP = 500; //sekundy na mignięcie
+            this.trening = trening;
+
+            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+            if(this.trening)
+                path = @"wyniki\Trening_" + path + ".txt";
+            else
+                path = @"wyniki\Test_" + path + ".txt";
+            fs = new StreamWriter(path);
+            this.fs.Write("Target was in this blinks: \n");
+
+                      
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
+            BackColor = Color.Black;
+
             timerImage.Interval = this.secPP;
             timerImage.Start();
-            BackColor = Color.Black;
         }
         private void SetImage(Image IMG)
         {
@@ -59,6 +74,8 @@ namespace Migacz
         {
             if (e.KeyCode == Keys.Escape)
             {
+                this.fs.Write("====================== \n====================== \n Total numbers of blinks: \n"+licznik.ToString());
+                this.fs.Close();
                 this.Close();
 
             }
@@ -71,11 +88,13 @@ namespace Migacz
 
         private void timerImage_Tick(object sender, EventArgs e)
         {
-            if (this.licznik== 300*2)
+            if (this.licznik == 300 * 2)
+            {
+                this.fs.Close();
                 this.Close();
+            }
+            
 
-
-            this.licznik++;
             if (BackColor == Color.White)
             {
                 BackColor = Color.Gray;
@@ -84,19 +103,24 @@ namespace Migacz
 
             else
             {
-                int rr = rnd.Next(1, 61);
+                this.licznik++;
+                int rr = rnd.Next(1, 121);
                 BackColor = Color.White;
                 
                 if (rr<= 25)
                     SetImage(Red);
-                if (rr > 25 || rr <=50 )
+                if ((rr > 25) && (rr <=50) )
                     SetImage(Orange);
-                if (rr > 50 || rr <= 75)
+                if ((rr > 50) && (rr <= 75))
                     SetImage(Green);
-                if (rr > 75 || rr <= 100)
+                if ((rr > 75) && (rr <= 100))
                     SetImage(Yellow);
-                if (rr > 100)
+                if (rr > 100 )
+                {
                     SetImage(Target);
+                    if(this.trening)
+                        this.fs.Write(this.licznik.ToString()+"\n");
+                }
                 pictureBox1.Show();
             }
         }

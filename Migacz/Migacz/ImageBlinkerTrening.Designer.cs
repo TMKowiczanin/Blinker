@@ -1,6 +1,6 @@
 ﻿namespace Migacz
 {
-    partial class ImageBlinker
+    partial class ImageBlinkerTrening
     {
         /// <summary>
         /// Required designer variable.

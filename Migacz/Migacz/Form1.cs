@@ -41,7 +41,7 @@ namespace Migacz
             if (MigajaceOkno != null)
                 MigajaceOkno.Close();
 
-            MigajaceOkno = new ImageBlinker();
+            MigajaceOkno = new ImageBlinkerTrening(true);
             // Show the settings form
             MigajaceOkno.Show();
             //System('Pause')
@@ -100,27 +100,27 @@ namespace Migacz
             setCzestotliwosc(5);
         }
 
-        private void textBoxCzasMigania_TextChanged(object sender, EventArgs e)
-        {
-
-
-
-
-        }
-
-        private void textBoxCzasMigania_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (true)
-                this.textBoxCzasMigania.Text = "60";
-
-
-
-
-        }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            if (MigajaceOkno != null)
+                MigajaceOkno.Close();
+
+            MigajaceOkno = new ImageBlinkerTrening(false);
+            // Show the settings form
+            MigajaceOkno.Show();
+            //System('Pause')
         }
     }
 }
