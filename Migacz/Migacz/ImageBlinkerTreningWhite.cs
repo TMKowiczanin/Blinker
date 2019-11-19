@@ -12,7 +12,7 @@ using System.IO;
 
 namespace Migacz
 {
-    public partial class ImageBlinkerTrening : Form
+    public partial class ImageBlinkerTreningWhite : Form
     {
         private int secPP;
         private Image Target    =Image.FromFile("imgs\\target.jpg");
@@ -22,8 +22,8 @@ namespace Migacz
         private Image Yellow    =Image.FromFile("imgs\\yellow.jpg");
         private Random rnd = new Random();
         private int licznik = 0;
-        //private Image Green =    Image.FromFile("imgs\green.jpg");
-        //private Image Orange =   Image.FromFile("imgs\orange.jpg");
+        private int klik = 0;
+
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
 
 
@@ -32,7 +32,7 @@ namespace Migacz
         StreamWriter fs;
         bool trening;
 
-        public ImageBlinkerTrening(bool trening)
+        public ImageBlinkerTreningWhite(bool trening)
         {
             InitializeComponent();
             this.secPP = 500; //sekundy na mignięcie
@@ -40,28 +40,28 @@ namespace Migacz
 
             path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss_FFF");
             if(this.trening)
-                path = @"wyniki\Trening_" + path + ".txt";
+                path = @"wyniki\TreningW_" + path + ".txt";
             else
-                path = @"wyniki\Test_" + path + ".txt";
+                path = @"wyniki\TestW_" + path + ".txt";
             fs = new StreamWriter(path);
             this.fs.WriteLine("Target was in this blinks:");
 
-                      
+            pictureBox.Hide();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
-            BackColor = Color.Black;
-
-            timerImage.Interval = this.secPP;
-            timerImage.Start();
+            BackColor = Color.White;
+            SetImage(Target);
+            timerImageW.Interval = this.secPP;
+            timerImageW.Start();
         }
         private void SetImage(Image IMG)
         {
             
-            pictureBox1.Width = IMG.Width;
-            pictureBox1.Height = IMG.Height;
-            pictureBox1.Image = IMG;
-            pictureBox1.Location = new Point((resolution.Width / 2) - (pictureBox1.Width / 2), (resolution.Height / 2) - (pictureBox1.Height / 2));
+            pictureBox.Width = IMG.Width;
+            pictureBox.Height = IMG.Height;
+            pictureBox.Image = IMG;
+            pictureBox.Location = new Point((resolution.Width / 2) - (pictureBox.Width / 2), (resolution.Height / 2) - (pictureBox.Height / 2));
 
 
         }
@@ -86,7 +86,7 @@ namespace Migacz
 
 
 
-        private void timerImage_Tick(object sender, EventArgs e)
+        private void timerImageW_Tick(object sender, EventArgs e)
         {
             if (this.licznik == 300 * 2)
             {
@@ -95,33 +95,68 @@ namespace Migacz
             }
             
 
-            if (BackColor == Color.White)
+            if (this.klik == 1)
             {
-                BackColor = Color.Gray;
-                pictureBox1.Hide();
+             
+                pictureBox.Hide();
             }
 
             else
             {
                 this.licznik++;
-                int rr = rnd.Next(1, 121);
-                BackColor = Color.White;
+                int rr = rnd.Next(1, 100);
                 
-                if (rr<= 25)
-                    SetImage(Red);
-                if ((rr > 25) && (rr <=50) )
-                    SetImage(Orange);
-                if ((rr > 50) && (rr <= 75))
-                    SetImage(Green);
-                if ((rr > 75) && (rr <= 100))
-                    SetImage(Yellow);
-                if (rr > 100 )
+                
+                if (rr > 75 )
                 {
-                    SetImage(Target);
+                    
                     if(this.trening)
                         this.fs.WriteLine(this.licznik.ToString());
                 }
-                pictureBox1.Show();
+                pictureBox.Show();
+            }
+        }
+
+        private void ImageBlinkerTrening_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (this.licznik == 300 * 2)
+            {
+                this.fs.Close();
+                this.Close();
+            }
+
+
+            if (this.klik == 1)
+            {
+                
+                pictureBox.Hide();
+                this.klik = 0;
+            }
+
+            else
+            {
+                this.licznik++;
+                int rr = rnd.Next(1, 100);
+
+
+                if (rr > 75)
+                {
+                    pictureBox.Show();
+                    if (this.trening)
+                        this.fs.WriteLine(this.licznik.ToString());
+                }
+
+                this.klik = 1;
             }
         }
     }

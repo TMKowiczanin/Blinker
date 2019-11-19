@@ -25,7 +25,7 @@ namespace Migacz
         public Blinker(int czestotliwosc, int migniecia)
         {
             Freq = czestotliwosc;
-            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss_FFF");
             path = @"wyniki\Blinks_" + path + ".txt";
             fs = new StreamWriter(path);
             //tw = new StreamWriter(fs);
