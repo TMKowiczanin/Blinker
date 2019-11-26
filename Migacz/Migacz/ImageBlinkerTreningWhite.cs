@@ -38,7 +38,7 @@ namespace Migacz
             this.secPP = 500; //sekundy na mignięcie
             this.trening = trening;
 
-            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss_FFF");
+            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
             if(this.trening)
                 path = @"wyniki\TreningW_" + path + ".txt";
             else
@@ -111,7 +111,7 @@ namespace Migacz
                 {
                     
                     if(this.trening)
-                        this.fs.WriteLine(this.licznik.ToString());
+                        this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
                 }
                 pictureBox.Show();
             }
@@ -151,9 +151,10 @@ namespace Migacz
 
                 if (rr > 75)
                 {
+                    //this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.FFF"));
                     pictureBox.Show();
                     if (this.trening)
-                        this.fs.WriteLine(this.licznik.ToString());
+                        this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
                 }
 
                 this.klik = 1;

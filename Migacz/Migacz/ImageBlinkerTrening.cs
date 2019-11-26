@@ -22,6 +22,7 @@ namespace Migacz
         private Image Yellow    =Image.FromFile("imgs\\yellow.jpg");
         private Random rnd = new Random();
         private int licznik = 0;
+        private int klik = 0;
         //private Image Green =    Image.FromFile("imgs\green.jpg");
         //private Image Orange =   Image.FromFile("imgs\orange.jpg");
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
@@ -38,7 +39,7 @@ namespace Migacz
             this.secPP = 500; //sekundy na mignięcie
             this.trening = trening;
 
-            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss_FFF");
+            path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
             if(this.trening)
                 path = @"wyniki\Trening_" + path + ".txt";
             else
@@ -50,7 +51,7 @@ namespace Migacz
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
-            BackColor = Color.Black;
+            BackColor = Color.White;
 
             timerImage.Interval = this.secPP;
             timerImage.Start();
@@ -93,20 +94,19 @@ namespace Migacz
                 this.fs.Close();
                 this.Close();
             }
-            
 
-            if (BackColor == Color.White)
+
+            if (this.klik == 1)
             {
-                BackColor = Color.Gray;
                 pictureBox1.Hide();
+                this.klik = 0;
             }
 
             else
             {
                 this.licznik++;
                 int rr = rnd.Next(1, 121);
-                BackColor = Color.White;
-                
+                                
                 if (rr<= 25)
                     SetImage(Red);
                 if ((rr > 25) && (rr <=50) )
@@ -119,9 +119,10 @@ namespace Migacz
                 {
                     SetImage(Target);
                     if(this.trening)
-                        this.fs.WriteLine(this.licznik.ToString());
+                        this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
                 }
                 pictureBox1.Show();
+                this.klik = 1;
             }
         }
     }
