@@ -122,5 +122,29 @@ namespace Migacz
             MigajaceOkno.Show();
             //System('Pause')
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            if (MigajaceOkno != null)
+                MigajaceOkno.Close();
+
+            MigajaceOkno = new ImageBlinkerTreningWhite(true);
+            // Show the settings form
+            MigajaceOkno.Show();
+            //System('Pause')
+        }
+
+        private void buttonTESTW_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            if (MigajaceOkno != null)
+                MigajaceOkno.Close();
+
+            MigajaceOkno = new ImageBlinkerTreningWhite(false);
+            // Show the settings form
+            MigajaceOkno.Show();
+            //System('Pause')
+        }
     }
 }

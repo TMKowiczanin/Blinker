@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolTip toolTipTrening;
             this.buttonTrening = new System.Windows.Forms.Button();
+            this.buttonTreningW = new System.Windows.Forms.Button();
             this.buttonTEST = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonMigaj = new System.Windows.Forms.Button();
@@ -44,6 +45,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonTESTW = new System.Windows.Forms.Button();
             toolTipTrening = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +66,18 @@
             this.buttonTrening.UseVisualStyleBackColor = true;
             this.buttonTrening.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonTreningW
+            // 
+            this.buttonTreningW.Location = new System.Drawing.Point(23, 333);
+            this.buttonTreningW.Name = "buttonTreningW";
+            this.buttonTreningW.Size = new System.Drawing.Size(164, 116);
+            this.buttonTreningW.TabIndex = 17;
+            this.buttonTreningW.Text = "TRENING WHITE";
+            toolTipTrening.SetToolTip(this.buttonTreningW, "Na ekranie wyświetla się w sposób losowy przez jedną minutę /n TARGET (10 razy) /" +
+        "n NoTARGET (50 razy).");
+            this.buttonTreningW.UseVisualStyleBackColor = true;
+            this.buttonTreningW.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // buttonTEST
             // 
             this.buttonTEST.Location = new System.Drawing.Point(245, 174);
@@ -79,9 +93,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(46, 148);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Czas migania to 60s.";
+            this.label1.Text = "Blinking time 60s.";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // buttonMigaj
@@ -90,7 +104,7 @@
             this.buttonMigaj.Name = "buttonMigaj";
             this.buttonMigaj.Size = new System.Drawing.Size(164, 116);
             this.buttonMigaj.TabIndex = 7;
-            this.buttonMigaj.Text = "MIGAJ";
+            this.buttonMigaj.Text = "BLINK";
             this.buttonMigaj.UseVisualStyleBackColor = true;
             this.buttonMigaj.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -180,33 +194,45 @@
             this.groupBox1.Size = new System.Drawing.Size(164, 116);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Wybierz częstotliwość";
+            this.groupBox1.Text = "Select frequency";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 293);
+            this.label2.Location = new System.Drawing.Point(46, 305);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 13);
+            this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Czas treningu to 300s.";
+            this.label2.Text = "TRENING time 300s.";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(273, 293);
+            this.label3.Location = new System.Drawing.Point(284, 305);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.Size = new System.Drawing.Size(86, 13);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Czas testu to 600s.";
+            this.label3.Text = "TEST time 600s.";
             this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // buttonTESTW
+            // 
+            this.buttonTESTW.Location = new System.Drawing.Point(245, 333);
+            this.buttonTESTW.Name = "buttonTESTW";
+            this.buttonTESTW.Size = new System.Drawing.Size(164, 116);
+            this.buttonTESTW.TabIndex = 18;
+            this.buttonTESTW.Text = "TEST WHITE";
+            this.buttonTESTW.UseVisualStyleBackColor = true;
+            this.buttonTESTW.Click += new System.EventHandler(this.buttonTESTW_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(426, 325);
+            this.ClientSize = new System.Drawing.Size(426, 476);
+            this.Controls.Add(this.buttonTESTW);
+            this.Controls.Add(this.buttonTreningW);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
@@ -215,7 +241,7 @@
             this.Controls.Add(this.buttonTEST);
             this.Controls.Add(this.buttonTrening);
             this.Name = "Form1";
-            this.Text = "PwM Migacz";
+            this.Text = "PwM Blinker";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -240,6 +266,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonTreningW;
+        private System.Windows.Forms.Button buttonTESTW;
     }
 }
 

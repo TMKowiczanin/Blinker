@@ -15,6 +15,7 @@ namespace Migacz
     public partial class ImageBlinkerTrening : Form
     {
         private int secPP;
+        private int click;
         private Image Target    =Image.FromFile("imgs\\target.jpg");
         private Image Red       =Image.FromFile("imgs\\red.jpg");
         private Image Green     =Image.FromFile("imgs\\green.jpg");
@@ -22,7 +23,6 @@ namespace Migacz
         private Image Yellow    =Image.FromFile("imgs\\yellow.jpg");
         private Random rnd = new Random();
         private int licznik = 0;
-        private int klik = 0;
         //private Image Green =    Image.FromFile("imgs\green.jpg");
         //private Image Orange =   Image.FromFile("imgs\orange.jpg");
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
@@ -35,6 +35,8 @@ namespace Migacz
 
         public ImageBlinkerTrening(bool trening)
         {
+            click = 0;
+
             InitializeComponent();
             this.secPP = 500; //sekundy na mignięcie
             this.trening = trening;
@@ -94,35 +96,37 @@ namespace Migacz
                 this.fs.Close();
                 this.Close();
             }
+            
 
-
-            if (this.klik == 1)
+            if (click == 1)
             {
+                //BackColor = Color.Gray;
                 pictureBox1.Hide();
-                this.klik = 0;
+                click = 0;
             }
 
             else
             {
                 this.licznik++;
                 int rr = rnd.Next(1, 121);
-                                
-                if (rr<= 25)
-                    SetImage(Red);
-                if ((rr > 25) && (rr <=50) )
-                    SetImage(Orange);
-                if ((rr > 50) && (rr <= 75))
-                    SetImage(Green);
-                if ((rr > 75) && (rr <= 100))
-                    SetImage(Yellow);
+                //BackColor = Color.White;
+                click = 1;
+                //if (rr<= 25)
+                //    SetImage(Red);
+                //if ((rr > 25) && (rr <=50) )
+                //    SetImage(Orange);
+                //if ((rr > 50) && (rr <= 75))
+                //    SetImage(Green);
+                //if ((rr > 75) && (rr <= 100))
+                //    SetImage(Yellow);
                 if (rr > 100 )
                 {
                     SetImage(Target);
                     if(this.trening)
-                        this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
+                        this.fs.WriteLine(this.licznik.ToString());
+                    pictureBox1.Show();
                 }
-                pictureBox1.Show();
-                this.klik = 1;
+                
             }
         }
     }
