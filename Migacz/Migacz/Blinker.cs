@@ -22,16 +22,16 @@ namespace Migacz
         String path;
         StreamWriter fs;
         int Freq;
-        public Blinker(int czestotliwosc, int migniecia)
+        public Blinker(int InitFreq, int migniecia)
         {
-            Freq = czestotliwosc;
+            Freq = InitFreq;
             path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss_FFF");
-            path = @"wyniki\Blinks_" + path + ".txt";
+            path = @"results\Blinks_" + path + ".txt";
             fs = new StreamWriter(path);
             //tw = new StreamWriter(fs);
 
             czasTrwania = migniecia;
-            secPP = 1000 / (2 * czestotliwosc);
+            secPP = 1000 / (2 * InitFreq);
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
@@ -40,17 +40,6 @@ namespace Migacz
             timer1.Start();
             timer2.Start();
             BackColor = Color.White;
-           
-          
-            //int j = 20;
-            //for (int i = 0; i <= j; i++)
-            //{
-
-            //    BackColor = Color.Red;
-            //    wait(500);
-            //    BackColor = Color.Black;
-            //    wait(500);
-            //}
 
 
         }
@@ -60,14 +49,19 @@ namespace Migacz
             if (e.KeyCode == Keys.Escape)
             {
 
-                this.fs.WriteLine("Blinks " + this.BlinkC.ToString() + " times.");
-                this.fs.WriteLine("Blinking frequency: "+Freq.ToString());
-                this.fs.Close();
-                this.Close();
-
+                EndSesion();
             }
         }
+        private void EndSesion()
+        {
 
+
+            this.fs.WriteLine("Blinks " + this.BlinkC.ToString() + " times.");
+            this.fs.WriteLine("Blinking frequency: " + Freq.ToString());
+            this.fs.Close();
+            this.Close();
+
+        }
         private void Blinker_Load(object sender, EventArgs e)
         {
 
@@ -89,7 +83,7 @@ namespace Migacz
             WyswietlaczSekund.Text= Convert.ToString( ++this.licznik);
 
             if (this.licznik == czasTrwania)
-                this.Close();
+                EndSesion();
         }
     }
 }

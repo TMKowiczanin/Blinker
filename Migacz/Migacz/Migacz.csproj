@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -103,6 +103,12 @@
     <Compile Include="ImageBlinkerTrening.Designer.cs">
       <DependentUpon>ImageBlinkerTrening.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageMATRIX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageMATRIX.Designer.cs">
+      <DependentUpon>ImageMATRIX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Blinker.resx">
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImageBlinkerTrening.resx">
       <DependentUpon>ImageBlinkerTrening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageMATRIX.resx">
+      <DependentUpon>ImageMATRIX.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -142,13 +151,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="imgs\beer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\carrot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\grapes.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="imgs\green.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\lime.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="imgs\orange.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="imgs\orange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="imgs\red.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\strawberry.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="imgs\target.jpg">
@@ -157,7 +187,7 @@
     <Content Include="imgs\yellow.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="wyniki\.txt">
+    <Content Include="results\.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

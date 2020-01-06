@@ -15,14 +15,17 @@ namespace Migacz
     public partial class ImageBlinkerTreningWhite : Form
     {
         private int secPP;
-        private Image Target    =Image.FromFile("imgs\\target.jpg");
-        private Image Red       =Image.FromFile("imgs\\red.jpg");
-        private Image Green     =Image.FromFile("imgs\\green.jpg");
-        private Image Orange    =Image.FromFile("imgs\\orange.jpg");
-        private Image Yellow    =Image.FromFile("imgs\\yellow.jpg");
+        private Image Target = Image.FromFile("imgs\\beer.png");
+
+        private Image Grapes = Image.FromFile("imgs\\grapes.png");
+        private Image Lime = Image.FromFile("imgs\\lime.png");
+        private Image Orange = Image.FromFile("imgs\\orange.png");
+        private Image Carrot = Image.FromFile("imgs\\carrot.png");
+        private Image Strawberry = Image.FromFile("imgs\\strawberry.png");
+
         private Random rnd = new Random();
-        private int licznik = 0;
-        private int klik = 0;
+        private int Counter = 0;
+        private int Click = 0;
 
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
 
@@ -35,14 +38,14 @@ namespace Migacz
         public ImageBlinkerTreningWhite(bool trening)
         {
             InitializeComponent();
-            this.secPP = 500; //sekundy na mignięcie
+            this.secPP = 500; //sec per blink
             this.trening = trening;
 
             path = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
             if(this.trening)
-                path = @"wyniki\TreningW_" + path + ".txt";
+                path = @"results\TreningW_" + path + ".txt";
             else
-                path = @"wyniki\TestW_" + path + ".txt";
+                path = @"results\TestW_" + path + ".txt";
             fs = new StreamWriter(path);
             this.fs.WriteLine("Target was in this blinks:");
 
@@ -74,28 +77,33 @@ namespace Migacz
         {
             if (e.KeyCode == Keys.Escape)
             {
-                
-                this.fs.WriteLine("==================================");
-                this.fs.WriteLine("==================================");
-                this.fs.WriteLine("Total numbers of blinks:" + licznik.ToString());
-                this.fs.Close();
-                this.Close();
+
+                EndSesion();
 
             }
         }
+        private void EndSesion()
+        {
 
+            this.fs.WriteLine("==================================");
+            this.fs.WriteLine("==================================");
+            this.fs.WriteLine("Total numbers of blinks:" + Counter.ToString());
+            this.fs.Close();
+            this.Close();
+
+        }
 
 
         private void timerImageW_Tick(object sender, EventArgs e)
         {
-            if (this.licznik == 300 * 2)
+            if (this.Counter == 300 * 2)
             {
-                this.fs.Close();
-                this.Close();
+                EndSesion();
+                return;
             }
             
 
-            if (this.klik == 1)
+            if (this.Click == 1)
             {
              
                 pictureBox.Hide();
@@ -103,7 +111,7 @@ namespace Migacz
 
             else
             {
-                this.licznik++;
+                this.Counter++;
                 int rr = rnd.Next(1, 100);
                 
                 
@@ -111,7 +119,7 @@ namespace Migacz
                 {
                     
                     if(this.trening)
-                        this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
+                        this.fs.WriteLine(this.Counter.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
                 }
                 pictureBox.Show();
             }
@@ -129,35 +137,34 @@ namespace Migacz
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.licznik == 300 * 2)
+            if (this.Counter == 300 * 2)
             {
-                this.fs.Close();
-                this.Close();
+                EndSesion();
+                return;
             }
 
 
-            if (this.klik == 1)
+            if (this.Click == 1)
             {
                 
                 pictureBox.Hide();
-                this.klik = 0;
+                this.Click = 0;
             }
 
             else
             {
-                this.licznik++;
+                this.Counter++;
                 int rr = rnd.Next(1, 100);
 
 
                 if (rr > 75)
                 {
-                    //this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.FFF"));
-                    pictureBox.Show();
+                     pictureBox.Show();
                     if (this.trening)
-                        this.fs.WriteLine(this.licznik.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
+                        this.fs.WriteLine(this.Counter.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
                 }
 
-                this.klik = 1;
+                this.Click = 1;
             }
         }
     }

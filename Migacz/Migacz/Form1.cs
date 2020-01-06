@@ -146,5 +146,17 @@ namespace Migacz
             MigajaceOkno.Show();
             //System('Pause')
         }
+
+        private void buttonMATRIX_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            if (MigajaceOkno != null)
+                MigajaceOkno.Close();
+
+            MigajaceOkno = new ImageMATRIX();
+            // Show the settings form
+            MigajaceOkno.Show();
+            //System('Pause')
+        }
     }
 }

@@ -46,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonTESTW = new System.Windows.Forms.Button();
+            this.buttonMATRIX = new System.Windows.Forms.Button();
             toolTipTrening = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             // buttonTrening
             // 
+            this.buttonTrening.DialogResult = System.Windows.Forms.DialogResult.No;
             this.buttonTrening.Location = new System.Drawing.Point(23, 174);
             this.buttonTrening.Name = "buttonTrening";
             this.buttonTrening.Size = new System.Drawing.Size(164, 116);
@@ -226,11 +228,22 @@
             this.buttonTESTW.UseVisualStyleBackColor = true;
             this.buttonTESTW.Click += new System.EventHandler(this.buttonTESTW_Click);
             // 
+            // buttonMATRIX
+            // 
+            this.buttonMATRIX.Location = new System.Drawing.Point(184, 287);
+            this.buttonMATRIX.Name = "buttonMATRIX";
+            this.buttonMATRIX.Size = new System.Drawing.Size(64, 49);
+            this.buttonMATRIX.TabIndex = 19;
+            this.buttonMATRIX.Text = "IMG MATRIX";
+            this.buttonMATRIX.UseVisualStyleBackColor = true;
+            this.buttonMATRIX.Click += new System.EventHandler(this.buttonMATRIX_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 476);
+            this.Controls.Add(this.buttonMATRIX);
             this.Controls.Add(this.buttonTESTW);
             this.Controls.Add(this.buttonTreningW);
             this.Controls.Add(this.label3);
@@ -268,6 +281,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonTreningW;
         private System.Windows.Forms.Button buttonTESTW;
+        private System.Windows.Forms.Button buttonMATRIX;
     }
 }
 
