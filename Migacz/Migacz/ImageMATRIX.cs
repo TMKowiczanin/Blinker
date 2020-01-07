@@ -34,7 +34,9 @@ namespace Migacz
         private bool [] IMGOnOff = new bool[6] {false, false, false, false, false, false };
         PictureBox[] array = new PictureBox[6];
 
-        
+        int[] NumArray = new int[6] { 1, 2, 3, 4, 5, 6 };
+        int[] ScenarioNumArray = new int[20*6];
+
 
         String path;
         StreamWriter fs;
@@ -60,10 +62,18 @@ namespace Migacz
 
         public ImageMATRIX()
         {
-
+            
 
             InitializeComponent();
-            
+
+            for (int i = 0; i < 20; i++)
+            {
+                Shuffle(NumArray);
+                for (int j = 0; j < 6; j++)
+                    ScenarioNumArray[i * 6 + j] = NumArray[j];
+
+            }
+
             Array[0] = pictureBox1;
             Array[1] = pictureBox2;
             Array[2] = pictureBox3;
@@ -144,6 +154,20 @@ namespace Migacz
 
         }
 
+
+        public void Shuffle<T>(T[] array)
+        {
+            Random rng = new Random();
+            int n = array.Length;
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                T temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
+            }
+        }
+
         private void MatrixOnOff(bool[] OnOff)
         {
             pictureBoxBlack.Hide();
@@ -185,7 +209,7 @@ namespace Migacz
 
 
 
-            if ((this.TargetCounter >= 10)&&(this.Counter2%2==0))
+            if ((this.Counter2==120))
             {
                 EndSesion();
                 return;
@@ -197,7 +221,8 @@ namespace Migacz
                 if (this.Klik)
                 {
 
-                    int rr = Rnd.Next(1, 6);
+                    //int rr = Rnd.Next(1, 6);
+                    int rr = ScenarioNumArray[Counter2-1];
                     if (rr == this.TargetNum)
                         this.TargetCounter++;
                     for (int i = 0; i < 6; i++)
