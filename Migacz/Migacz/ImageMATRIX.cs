@@ -91,15 +91,15 @@ namespace Migacz
 
 
             pictureBoxTarget.Location= new Point((resolution.Width / 2) - (pictureBoxTarget.Width / 2), (resolution.Height / 2) - (pictureBoxTarget.Height / 2));
-
+            
             for (int i = 0; i < 3; i++)
             {
-                Array[i].Location = new Point(5 + 400 * i + 10*i, 1);
+                Array[i].Location = new Point((resolution.Width - 400 * 3) / 4 + 400 * i + (resolution.Width - 400 * 3) / 4 * i, (resolution.Height - 400 * 2) / 3);
             }
 
             for (int i = 3; i < 6; i++)
             {
-                Array[i].Location = new Point(5 + 400 * (i-3) + 10* (i - 3), 410);
+                Array[i].Location = new Point((resolution.Width - 400 * 3) / 4 + 400 * (i-3) + (resolution.Width - 400 * 3) / 4 * (i - 3), 400+2* (resolution.Height - 400 * 2) / 3);
             }
 
             this.TargetNum = Rnd.Next(1, 6);
