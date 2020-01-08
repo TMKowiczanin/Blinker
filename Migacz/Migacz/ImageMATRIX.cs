@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 
 namespace Migacz
 {
     public partial class ImageMATRIX : Form
     {
-        private int secPP;
+        private int SecPP;
         private Image Target = Image.FromFile("imgs\\beer.png");
         private Image Black = Image.FromFile("imgs\\black.png");
 
@@ -24,45 +18,29 @@ namespace Migacz
         private Image Carrot = Image.FromFile("imgs\\carrot.png");
         private Image Strawberry = Image.FromFile("imgs\\strawberry.png");
 
-        private Random rnd = new Random();
+        private Random Rnd = new Random();
         private int Counter = 0;
         private int Counter2 = 0;
         private int TargetCounter = 0;
-        private bool klik = false;
+        private bool Klik = false;
         private int TargetNum = 0;
         Rectangle resolution = Screen.PrimaryScreen.Bounds;
-        private bool [] IMGOnOff = new bool[6] {false, false, false, false, false, false };
-        PictureBox[] array = new PictureBox[6];
+        private bool[] IMGOnOff = new bool[6] { false, false, false, false, false, false };
+        PictureBox[] Array = new PictureBox[6];
 
         int[] NumArray = new int[6] { 1, 2, 3, 4, 5, 6 };
-        int[] ScenarioNumArray = new int[20*6];
+        int[] ScenarioNumArray = new int[20 * 6];
 
 
-        String path;
-        StreamWriter fs;
+        string Path;
+        StreamWriter Fs;
         bool trening;
 
-        public int SecPP { get => secPP; set => secPP = value; }
-        public Image Target1 { get => Target; set => Target = value; }
-        public Image Black1 { get => Black; set => Black = value; }
-        public Image Grapes1 { get => Grapes; set => Grapes = value; }
-        public Image Lime1 { get => Lime; set => Lime = value; }
-        public Image Orange1 { get => Orange; set => Orange = value; }
-        public Image Carrot1 { get => Carrot; set => Carrot = value; }
-        public Image Strawberry1 { get => Strawberry; set => Strawberry = value; }
-        public Random Rnd { get => rnd; set => rnd = value; }
-        public int Licznik { get => Counter; set => Counter = value; }
-        public bool Klik { get => klik; set => klik = value; }
-        public Rectangle Resolution { get => resolution; set => resolution = value; }
-        public bool[] IMGOnOff1 { get => IMGOnOff; set => IMGOnOff = value; }
-        public PictureBox[] Array { get => array; set => array = value; }
-        public string Path { get => path; set => path = value; }
-        public StreamWriter Fs { get => fs; set => fs = value; }
-        public bool Trening { get => trening; set => trening = value; }
+
 
         public ImageMATRIX()
         {
-            
+
 
             InitializeComponent();
 
@@ -81,16 +59,17 @@ namespace Migacz
             Array[4] = pictureBox5;
             Array[5] = pictureBox6;
 
-            pictureBoxBlack.Image = Black1;
-            Array[0].Image = Target1;
-            Array[1].Image = Grapes1;
-            Array[2].Image = Lime1;
-            Array[3].Image = Orange1;
-            Array[4].Image = Carrot1;
-            Array[5].Image = Strawberry1;
+            pictureBoxBlack.Image = Black;
+            Array[0].Image = Target;
+            Array[1].Image = Grapes;
+            Array[2].Image = Lime;
+            Array[3].Image = Orange;
+            Array[4].Image = Carrot;
+            Array[5].Image = Strawberry;
 
 
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 6; i++)
+            {
                 Array[i].Height = 400;
                 Array[i].Width = 400;
             }
@@ -100,8 +79,8 @@ namespace Migacz
             pictureBoxTarget.Height = 400;
 
 
-            pictureBoxTarget.Location= new Point((resolution.Width / 2) - (pictureBoxTarget.Width / 2), (resolution.Height / 2) - (pictureBoxTarget.Height / 2));
-            
+            pictureBoxTarget.Location = new Point((resolution.Width / 2) - (pictureBoxTarget.Width / 2), (resolution.Height / 2) - (pictureBoxTarget.Height / 2));
+
             for (int i = 0; i < 3; i++)
             {
                 Array[i].Location = new Point((resolution.Width - 400 * 3) / 4 + 400 * i + (resolution.Width - 400 * 3) / 4 * i, (resolution.Height - 400 * 2) / 3);
@@ -109,37 +88,29 @@ namespace Migacz
 
             for (int i = 3; i < 6; i++)
             {
-                Array[i].Location = new Point((resolution.Width - 400 * 3) / 4 + 400 * (i-3) + (resolution.Width - 400 * 3) / 4 * (i - 3), 400+2* (resolution.Height - 400 * 2) / 3);
+                Array[i].Location = new Point((resolution.Width - 400 * 3) / 4 + 400 * (i - 3) + (resolution.Width - 400 * 3) / 4 * (i - 3), 400 + 2 * (resolution.Height - 400 * 2) / 3);
             }
 
-            this.TargetNum = Rnd.Next(1, 6);
-            pictureBoxTarget.Image =Array[this.TargetNum-1].Image ;
+            TargetNum = Rnd.Next(1, 6);
+            pictureBoxTarget.Image = Array[TargetNum - 1].Image;
 
             pictureBoxTarget.Hide();
 
 
-            MatrixOnOff(this.IMGOnOff1);
+            MatrixOnOff(IMGOnOff);
 
 
 
-            this.SecPP = 500; //sekundy na mignięcie
-            this.Trening = Trening;
-
-
-
-                
-
-
-
+            SecPP = 500; //sekundy na mignięcie
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             TopMost = true;
             BackColor = Color.White;
-            MatrixOnOff(this.IMGOnOff1);
+            MatrixOnOff(IMGOnOff);
             pictureBoxBlack.Hide();
 
 
-            MATRIX_timer.Interval = this.secPP;
+            MATRIX_timer.Interval = SecPP;
             MATRIX_timer.Start();
 
             pictureBoxTarget.Show();
@@ -148,7 +119,7 @@ namespace Migacz
             Path = @"results\MATRIX_" + Path + ".txt";
 
             Fs = new StreamWriter(Path);
-            this.Fs.WriteLine("Target is image number: "+ this.TargetNum.ToString());
+            Fs.WriteLine("Target is image number: " + TargetNum.ToString());
 
 
 
@@ -175,22 +146,23 @@ namespace Migacz
             {
                 if (OnOff[i] == false)
                 {
-                    this.Array[i].Hide();
-                    this.pictureBoxBlack.Location = this.Array[i].Location;
+                    Array[i].Hide();
+                    pictureBoxBlack.Location = Array[i].Location;
                     pictureBoxBlack.Show();
                 }
                 if (OnOff[i] == true)
-                    this.Array[i].Show();
-                                                         }
+                    Array[i].Show();
+            }
         }
-        private void EndSesion() {
+        private void EndSesion()
+        {
 
-            this.fs.WriteLine("==================================");
-            this.fs.WriteLine("==================================");
-            this.fs.WriteLine("Total numbers of blinks:" + Counter2.ToString());
-            this.fs.WriteLine("Total numbers of target blinks:" + TargetCounter.ToString());
-            this.fs.Close();
-            this.Close();
+            Fs.WriteLine("==================================");
+            Fs.WriteLine("==================================");
+            Fs.WriteLine("Total numbers of blinks:" + (Counter2 - 1).ToString());
+            Fs.WriteLine("Total numbers of target blinks:" + TargetCounter.ToString());
+            Fs.Close();
+            Close();
 
         }
         private void ImageMATRIX_KeyDown(object sender, KeyEventArgs e)
@@ -209,39 +181,49 @@ namespace Migacz
 
 
 
-            if ((this.Counter2==120))
+            if ((Counter2 > 120))
             {
                 EndSesion();
                 return;
             }
-
-            if (Counter >= 10)
+            if (Counter < 6)
             {
-                this.pictureBoxTarget.Hide();
-                if (this.Klik)
+                pictureBoxTarget.Show();
+            }
+            if ((Counter > 6) && (Counter < 12))
+            {
+                pictureBoxTarget.Hide();
+                for (int i = 0; i < 6; i++)
+                    Array[i].Show();
+
+            }
+            if (Counter >= 12)
+            {
+                pictureBoxTarget.Hide();
+                if (Klik)
                 {
 
                     //int rr = Rnd.Next(1, 6);
-                    int rr = ScenarioNumArray[Counter2-1];
-                    if (rr == this.TargetNum)
-                        this.TargetCounter++;
+                    int rr = ScenarioNumArray[Counter2 - 1];
+                    if (rr == TargetNum)
+                        TargetCounter++;
                     for (int i = 0; i < 6; i++)
                     {
-                        if (i == rr-1)
-                            IMGOnOff1[i] = false;
+                        if (i == rr - 1)
+                            IMGOnOff[i] = false;
                         else
-                            IMGOnOff1[i] = true;
+                            IMGOnOff[i] = true;
                     }
-                    MatrixOnOff(IMGOnOff1);
+                    MatrixOnOff(IMGOnOff);
 
-                    this.fs.WriteLine("IMG number " + rr.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
+                    Fs.WriteLine("IMG number " + rr.ToString() + '\t' + DateTime.Now.ToString("HH:mm:ss.FFF"));
                     ;
                 }
                 else
                 {
                     for (int i = 0; i < 6; i++)
-                        IMGOnOff1[i] = true;
-                    MatrixOnOff(IMGOnOff1);
+                        IMGOnOff[i] = true;
+                    MatrixOnOff(IMGOnOff);
                     Counter2++;
 
 
@@ -251,16 +233,14 @@ namespace Migacz
 
 
             }
-            else {
-                this.pictureBoxTarget.Show();
-            }
 
 
 
 
 
-            this.Counter++;
-            this.Klik = !this.Klik;
+
+            Counter++;
+            Klik = !Klik;
         }
     }
 }
